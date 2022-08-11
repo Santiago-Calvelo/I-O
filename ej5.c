@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   int line = 0;
   int word = 0;
   int in_word = 0;
-  while ((c = fgetc(fp vvvvvvvvvvvv)) != EOF) {
+  while ((c = fgetc(fp)) != EOF) {
     if (c != '\n' && c != '\t' && c != ' ')
       in_word = 1;
     else {
