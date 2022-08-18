@@ -1,47 +1,45 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(int argc, char const *argv[]) {
-  int choice, q1;
+int main(void) {
+  FILE *fp;
+  fp = fopen("questions.txt", "r");
+  int choice, c, q;
+  int i = 5;
+  int l = 0;
+  int respuesta;
   int points = 0;
-  printf("Quieres jugar una trivia?\n");
-  printf("1: Por supuesto\n");
-  printf("2: Salir\n");
+  printf("Quieres jugar mi trivia?\n");
+  printf("1) Si\n");
+  printf("2) No\n");
   scanf("%d", &choice);
-  while (1) {
-    switch (choice) {
-      case 1:
-        printf("De donde sale la leche con chocolate?\n");
-        printf("1: Vacas marrones\n");
-        printf("2: Del nesquik\n");
-        scanf("%d", &q1);
-        switch (q1) {
-          case 1:
-            points++;
-            system("clear");
-            printf("%d\n", points);
-            continue;
-        case 2:
-          continue;
+
+  if (choice == 1) {
+    printf("Divertite\n");
+      for (int j = 0; j < 3; j++) {
+        while(l < i) {
+          c = fgetc(fp);
+          if (c == '\n') l++;
+          printf("%c", c);
+          if (l == 5) respuesta = 4;
+          else if (l == 10) respuesta = 4;
+          else if (l == 13) respuesta = 2;
+        }
+        i += 5;
+        printf("\n");
+        scanf("%d", &q);
+        if (q == respuesta) {
+          printf("Correcto!\n");
+          points++;
+        }
+        else printf("Incorrecto\n");
       }
-        continue;
-      case 2:
-      printf("Estas atrapado hasta que la trivia termine, que empiece el juego\n");
-        printf("De donde sale la leche con chocolate?\n");
-        printf("1: Vacas marrones\n");
-        printf("2: Del nesquik\n");
-        scanf("%d", &q1);
-        switch (q1) {
-          case 1:
-            points++;
-            system("clear");
-            printf("%d\n", points);
-            continue;
-          case 2:
-            continue;
-      }
-        continue;
+      printf("Tu puntaje es: %d\n", points);
     }
+  else {
+    printf("Adios\n");
+    return 1;
   }
+
+  fclose(fp);
   return 0;
 }
